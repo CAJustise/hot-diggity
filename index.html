@@ -819,11 +819,66 @@ const itemCfg = {
       {group:'sauce',label:'Sauce', required:true, items:[{val:'Chocolate'},{val:'Hot Fudge'},{val:'Strawberry'},{val:'Caramel'},{val:'Pineapple'}]}
     ]
   },
-  bfsteak:    {type:'simple',id:'bfsteak',    name:'Steak & Egg',          price:17, desc:'Flame-grilled flat iron steak with a fried egg on a toasted hoagie.'},
-  bfchicken:  {type:'simple',id:'bfchicken',  name:'Chicken & Egg',        price:16, desc:'Flame-grilled chicken thigh with a fried egg on a brioche bun.'},
-  bfburger:   {type:'simple',id:'bfburger',   name:'Burger & Egg',         price:15, desc:'Flame-grilled 80/20 chuck with a fried egg on a brioche bun.'},
-  bfchilichup:{type:'simple',id:'bfchilichup',name:'Chili & Egg — Cup',  price:5,  desc:'All beef, no beans. Cheddar, diced onions, topped with a fried egg.'},
-  bfchlibo:   {type:'simple',id:'bfchlibo',   name:'Chili & Egg — Bowl', price:8,  desc:'All beef, no beans. Cheddar, diced onions, topped with a fried egg.'},
+  bfsteak: {
+    type:'sandwich', id:'bfsteak',
+    name:'Steak &amp; Egg', basePrice:17,
+    desc:'Flame-grilled flat iron steak, fried egg, house sauce, beefsteak tomato, white onion on a toasted hoagie.',
+    ingredients:['House Sauce','Egg','Lettuce','Tomato','Sliced Onion'],
+    extras:[
+      {name:'Chili',price:1.5},{name:'Cheese',price:1.5},
+      {name:'Fire Jalapéño Coins',price:1},{name:'Spark Onion Strings',price:1.5},
+      {name:'Ketchup',price:0},{name:'Mustard',price:0}
+    ],
+    hasCombo:true
+  },
+  bfchicken: {
+    type:'sandwich', id:'bfchicken',
+    name:'Chicken &amp; Egg', basePrice:16,
+    desc:'Flame-grilled chicken thigh, fried egg, house sauce, lettuce, tomato, sliced onion on a brioche bun.',
+    ingredients:['House Sauce','Egg','Lettuce','Tomato','Sliced Onion'],
+    extras:[
+      {name:'Chili',price:1.5},{name:'Cheese',price:1.5},
+      {name:'Fire Jalapéño Coins',price:1},{name:'Spark Onion Strings',price:1.5},
+      {name:'Ketchup',price:0},{name:'Mustard',price:0}
+    ],
+    hasCombo:true
+  },
+  bfburger: {
+    type:'sandwich', id:'bfburger',
+    name:'Burger &amp; Egg', basePrice:15,
+    desc:'Flame-grilled 80/20 chuck, fried egg, house sauce, lettuce, tomato, sliced onion on a brioche bun.',
+    ingredients:['House Sauce','Egg','Lettuce','Tomato','Sliced Onion'],
+    extras:[
+      {name:'Chili',price:1.5},
+      {name:'Fire Jalapéño Coins',price:1},{name:'Spark Onion Strings',price:1.5},
+      {name:'Ketchup',price:0},{name:'Mustard',price:0}
+    ],
+    cheeseOpt:true, hasCombo:true
+  },
+  bfchilichup: {
+    type:'sandwich', id:'bfchilichup',
+    name:'Chili &amp; Egg — Cup', basePrice:5,
+    desc:'All beef, no beans. Cheddar, diced onions, topped with a fried egg.',
+    ingredients:['Egg','Cheddar','Diced Onions'],
+    extras:[
+      {name:'Spark Onion Strings',price:1.5},
+      {name:'Fire Jalapéño Coins',price:1},
+      {name:'Ketchup',price:0},{name:'Mustard',price:0},{name:'Hot Sauce',price:0}
+    ],
+    hasCombo:false
+  },
+  bfchlibo: {
+    type:'sandwich', id:'bfchlibo',
+    name:'Chili &amp; Egg — Bowl', basePrice:8,
+    desc:'All beef, no beans. Cheddar, diced onions, topped with a fried egg.',
+    ingredients:['Egg','Cheddar','Diced Onions'],
+    extras:[
+      {name:'Spark Onion Strings',price:1.5},
+      {name:'Fire Jalapéño Coins',price:1},
+      {name:'Ketchup',price:0},{name:'Mustard',price:0},{name:'Hot Sauce',price:0}
+    ],
+    hasCombo:false
+  },
   oj: {
     type:'drink', id:'oj', name:'Orange Juice', basePrice:3,
     desc:'Fresh squeezed.',
@@ -857,7 +912,7 @@ const itemCfg = {
 
 // ── State ──────────────────────────────────────────────────────
 const sandwichState = {};
-const sandwichIds = ['steak','chicken','burger','dog'];
+const sandwichIds = ['steak','chicken','burger','dog','bfsteak','bfchicken','bfburger','bfchilichup','bfchlibo'];
 sandwichIds.forEach(function(id) {
   sandwichState[id] = { removed: new Set(), extras: new Map(), opts: {}, ingState: new Map() };
 });
