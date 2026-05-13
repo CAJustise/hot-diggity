@@ -252,6 +252,11 @@
     /* ── Item detail modal ──────────────────────────────────── */
     #hero-banner{height:240px;margin:-1.5rem -1.2rem 1.4rem;background:url('images/Restaurant.jpeg') center/cover no-repeat;position:relative;overflow:hidden}
     #hero-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,35,35,.18) 0%,rgba(15,35,35,.48) 100%)}
+    .qty-stepper{display:flex;align-items:center;gap:.55rem;margin-top:.55rem}
+    .qty-stepper-btn{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border);background:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--black);transition:border-color .15s;flex-shrink:0}
+    .qty-stepper-btn:hover{border-color:#1F87B8;color:#1F87B8}
+    .qty-stepper-val{font-weight:700;font-size:.95rem;min-width:1.1rem;text-align:center}
+    .qty-stepper-label{font-size:.75rem;color:var(--muted)}
     #item-modal{display:none;position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.52);align-items:flex-start;justify-content:center}
     #item-modal.open{display:flex}
     #item-modal-sheet{background:#fff;width:100%;max-width:640px;height:85vh;border-radius:0 0 16px 16px;display:flex;flex-direction:column;animation:dropDown .26s cubic-bezier(.22,.61,.36,1);overflow:hidden}
@@ -823,29 +828,29 @@ const itemCfg = {
     type:'drink', id:'oj', name:'Orange Juice', basePrice:3,
     desc:'Fresh squeezed.',
     required:[],
-    defaults:{cream:{val:'No Cream',price:0}},
+    defaults:{},
     opts:[
-      {group:'cream', label:'Cream', required:false, items:[{val:'No Cream',price:0},{val:'Add Cream',price:0}]}
+      {group:'cream', label:'Cream', required:false, qty:true, items:[{val:'None',price:0},{val:'Cream',price:0},{val:'Sweet Cream',price:0},{val:'Vanilla Sweet Cream',price:0}]}
     ]
   },
   hotcoffee: {
     type:'drink', id:'hotcoffee', name:'Hot Coffee', basePrice:2,
     desc:'House drip.',
     required:[],
-    defaults:{cream:{val:'No Cream',price:0},sweetener:{val:'None',price:0}},
+    defaults:{},
     opts:[
-      {group:'cream',     label:'Cream',     required:false, items:[{val:'No Cream',price:0},{val:'Add Cream',price:0}]},
-      {group:'sweetener', label:'Sweetener', required:false, items:[{val:'None',price:0},{val:'Sugar Packets',price:0},{val:'Equal',price:0},{val:'Liquid Sweetener',price:0}]}
+      {group:'cream',     label:'Cream',     required:false, qty:true, items:[{val:'None',price:0},{val:'Cream',price:0},{val:'Sweet Cream',price:0},{val:'Vanilla Sweet Cream',price:0}]},
+      {group:'sweetener', label:'Sweetener', required:false, qty:true, items:[{val:'None',price:0},{val:'Sugar Packets',price:0},{val:'Equal',price:0},{val:'Liquid Sweetener',price:0}]}
     ]
   },
   icedcoffee: {
     type:'drink', id:'icedcoffee', name:'Iced Coffee', basePrice:3,
     desc:'Cold brew over ice.',
     required:[],
-    defaults:{cream:{val:'No Cream',price:0},sweetener:{val:'None',price:0}},
+    defaults:{},
     opts:[
-      {group:'cream',     label:'Cream',     required:false, items:[{val:'No Cream',price:0},{val:'Add Cream',price:0}]},
-      {group:'sweetener', label:'Sweetener', required:false, items:[{val:'None',price:0},{val:'Sugar Packets',price:0},{val:'Equal',price:0},{val:'Liquid Sweetener',price:0}]}
+      {group:'cream',     label:'Cream',     required:false, qty:true, items:[{val:'None',price:0},{val:'Cream',price:0},{val:'Sweet Cream',price:0},{val:'Vanilla Sweet Cream',price:0}]},
+      {group:'sweetener', label:'Sweetener', required:false, qty:true, items:[{val:'None',price:0},{val:'Sugar Packets',price:0},{val:'Equal',price:0},{val:'Liquid Sweetener',price:0}]}
     ]
   }
 };
@@ -1012,6 +1017,7 @@ function openItemModal(id) {
       sec.className = 'modal-section';
       var s = drinkState[id];
       var currSel = s[optGroup.group] && s[optGroup.group].val;
+      var currQty = (s[optGroup.group] && s[optGroup.group].qty) || 1;
       var reqBadge = optGroup.required ? '<span class="req-badge">Required</span>' : '';
       var btns = optGroup.items.map(function(item) {
         var isSel = currSel === item.val;
@@ -1019,9 +1025,19 @@ function openItemModal(id) {
         var price = item.price !== undefined ? item.price : 0;
         return '<button class="opt-btn' + (isSel ? ' sel' : '') + '" data-id="' + id + '" data-group="' + optGroup.group + '" data-val="' + item.val + '" data-price="' + price + '" onclick="selectOpt(this)">' + lbl + '</button>';
       }).join('');
+      var qtyHtml = '';
+      if (optGroup.qty) {
+        var showQty = currSel && currSel !== 'None';
+        qtyHtml = '<div class="qty-stepper" id="qty-row-' + id + '-' + optGroup.group + '" style="display:' + (showQty ? 'flex' : 'none') + '">'
+          + '<button class="qty-stepper-btn" onclick="adjQty(\'' + id + '\',\'' + optGroup.group + '\',-1)">&#8722;</button>'
+          + '<span class="qty-stepper-val" id="qty-val-' + id + '-' + optGroup.group + '">' + currQty + '</span>'
+          + '<button class="qty-stepper-btn" onclick="adjQty(\'' + id + '\',\'' + optGroup.group + '\',1)">+</button>'
+          + '<span class="qty-stepper-label">max 6</span></div>';
+      }
       sec.innerHTML =
         '<div class="modal-section-label">' + optGroup.label + reqBadge + '</div>' +
-        '<div class="opt-group" id="req-' + id + '-' + optGroup.group + '">' + btns + '</div>';
+        '<div class="opt-group" id="req-' + id + '-' + optGroup.group + '">' + btns + '</div>' +
+        qtyHtml;
       sections.appendChild(sec);
     });
   }
@@ -1129,13 +1145,29 @@ function selectOpt(btn) {
   var price = parseFloat(btn.dataset.price || 0);
   if (sandwichState[id])          sandwichState[id].opts[group] = { val: val, price: price };
   else if (drinkState[id] !== undefined) {
-    drinkState[id][group] = { val: val, price: price };
+    var prevQty = (drinkState[id][group] && drinkState[id][group].qty) || 1;
+    drinkState[id][group] = { val: val, price: price, qty: prevQty };
+    var qtyRow = document.getElementById('qty-row-' + id + '-' + group);
+    if (qtyRow) {
+      var show = val !== 'None';
+      qtyRow.style.display = show ? 'flex' : 'none';
+      if (!show) drinkState[id][group].qty = 1;
+    }
   }
   document.querySelectorAll('.opt-btn[data-id="' + id + '"][data-group="' + group + '"]').forEach(function(b) {
     b.classList.toggle('sel', b.dataset.val === val);
     b.classList.remove('req-err');
   });
   updateModalCTA();
+}
+
+function adjQty(id, group, delta) {
+  var s = drinkState[id];
+  if (!s || !s[group]) return;
+  var qty = Math.max(1, Math.min(6, (s[group].qty || 1) + delta));
+  s[group].qty = qty;
+  var el = document.getElementById('qty-val-' + id + '-' + group);
+  if (el) el.textContent = qty;
 }
 
 // ── Combo drink sub-options ────────────────────────────────────
@@ -1278,7 +1310,10 @@ function addFromModal() {
       var sel = ds[g];
       if (sel && typeof sel === 'object') {
         dPrice += sel.price || 0;
-        dParts.push(sel.val);
+        if (sel.val && sel.val !== 'None') {
+          var qty = sel.qty || 1;
+          dParts.push(qty > 1 ? qty + 'x ' + sel.val : sel.val);
+        }
       } else if (typeof sel === 'string') {
         dParts.push(sel);
       }
