@@ -768,7 +768,8 @@ const itemCfg = {
     required:['size','flavor'],
     opts:[
       {group:'size',  label:'Size',   required:true,  items:[{val:'20oz',price:3,label:'20 oz — $3'},{val:'32oz',price:5,label:'32 oz — $5'}]},
-      {group:'flavor',label:'Flavor', required:true,  items:[{val:'Coke'},{val:'Diet Coke'},{val:'Sprite'},{val:'Mr. Pibb'},{val:"Barq's Root Beer"}]}
+      {group:'flavor',label:'Flavor', required:true,  items:[{val:'Coke'},{val:'Diet Coke'},{val:'Sprite'},{val:'Mr. Pibb'},{val:"Barq's Root Beer"}]},
+      {group:'float',label:'Make it a Float',required:false,items:[{val:'Vanilla Soft Serve Float',price:2,label:'Make it a Float +$2'}]}
     ]
   },
   tea: {
@@ -777,7 +778,8 @@ const itemCfg = {
     required:['size','style'],
     opts:[
       {group:'size', label:'Size',  required:true, items:[{val:'20oz',price:3,label:'20 oz — $3'},{val:'32oz',price:5,label:'32 oz — $5'}]},
-      {group:'style',label:'Style', required:true, items:[{val:'Unsweet'},{val:'Sweet Tea'}]}
+      {group:'style',label:'Style', required:true, items:[{val:'Unsweet'},{val:'Sweet Tea'}]},
+      {group:'float',label:'Make it a Float',required:false,items:[{val:'Vanilla Soft Serve Float',price:2,label:'Make it a Float +$2'}]}
     ]
   },
   lemon: {
@@ -785,7 +787,8 @@ const itemCfg = {
     desc:'Fresh-squeezed. Order it slushie style.',
     required:['size'],
     opts:[
-      {group:'size',label:'Size',required:true,items:[{val:'20oz',price:4,label:'20 oz — $4'},{val:'32oz',price:6,label:'32 oz — $6'}]}
+      {group:'size',label:'Size',required:true,items:[{val:'20oz',price:4,label:'20 oz — $4'},{val:'32oz',price:6,label:'32 oz — $6'}]},
+      {group:'float',label:'Make it a Float',required:false,items:[{val:'Vanilla Soft Serve Float',price:2,label:'Make it a Float +$2'}]}
     ]
   },
   icee: {
@@ -796,6 +799,9 @@ const itemCfg = {
       {group:'flavor',label:'Flavor',required:true,items:[
         {val:'Cherry'},{val:'Red White & Boom!!'},{val:'Blue Raspberry'},
         {val:'Orange Cream'},{val:'Frosted Lemonade'},{val:'Piña Colada'}
+      ]},
+      {group:'float',label:'Make it a Float',required:false,items:[
+        {val:'Vanilla Soft Serve Float',price:2,label:'Make it a Float +$2'}
       ]}
     ]
   },
@@ -1203,6 +1209,14 @@ function selectOpt(btn) {
   var price = parseFloat(btn.dataset.price || 0);
   if (sandwichState[id])          sandwichState[id].opts[group] = { val: val, price: price };
   else if (drinkState[id] !== undefined) {
+    var cfg2 = itemCfg[id];
+    var isRequired = cfg2 && cfg2.required && cfg2.required.indexOf(group) !== -1;
+    if (!isRequired && btn.classList.contains('sel')) {
+      drinkState[id][group] = null;
+      document.querySelectorAll('.opt-btn[data-id="' + id + '"][data-group="' + group + '"]').forEach(function(b) { b.classList.remove('sel'); });
+      updateModalCTA();
+      return;
+    }
     var prevQty = (drinkState[id][group] && drinkState[id][group].qty) || 1;
     drinkState[id][group] = { val: val, price: price, qty: prevQty };
     var qtyRow = document.getElementById('qty-row-' + id + '-' + group);
