@@ -423,7 +423,7 @@
 
 <div class="item-card" onclick="openItemModal('3x3')">
   <div class="item-info">
-    <div class="item-name">3x3</div>
+    <div class="item-name">Rule of 3rds</div>
     <div class="item-desc">&#8531; Fries &middot; &#8531; Onion Strings &middot; &#8531; Jalape&#241;o Coins</div>
   </div>
   <div class="item-thumb-wrap">
@@ -714,7 +714,7 @@ const itemCfg = {
     desc:'Flame-grilled flat iron steak, open-fire char, house sauce, Swiss, garlic aioli, beefsteak tomato, white onion on a toasted hoagie.',
     ingredients:['House Sauce','Lettuce','Tomato','Sliced Onion'],
     extras:[
-      {name:'Chili',price:1.5},{name:'Cheese',price:1.5},
+      {name:'Chili',price:1.5},{name:'Cheese',price:1.5},{name:'Avocado',price:1},{name:'Bacon',price:2},
       {name:'Fire Jalapéño Coins',price:1},{name:'Spark Onion Strings',price:1.5},
       {name:'Ketchup',price:0},{name:'Mustard',price:0}
     ],
@@ -726,7 +726,7 @@ const itemCfg = {
     desc:'Flame-grilled boneless thighs, house sauce, lettuce, tomato, sliced onion on a brioche bun.',
     ingredients:['House Sauce','Lettuce','Tomato','Sliced Onion'],
     extras:[
-      {name:'Chili',price:1.5},{name:'Cheese',price:1.5},
+      {name:'Chili',price:1.5},{name:'Cheese',price:1.5},{name:'Avocado',price:1},{name:'Bacon',price:2},
       {name:'Fire Jalapéño Coins',price:1},{name:'Spark Onion Strings',price:1.5},
       {name:'Ketchup',price:0},{name:'Mustard',price:0}
     ],
@@ -738,7 +738,7 @@ const itemCfg = {
     desc:'Flame-grilled 80/20 chuck patty, house sauce, lettuce, tomato, sliced onion on a brioche bun.',
     ingredients:['House Sauce','Lettuce','Tomato','Sliced Onion'],
     extras:[
-      {name:'Chili',price:1.5},
+      {name:'Chili',price:1.5},{name:'Avocado',price:1},{name:'Bacon',price:2},
       {name:'Fire Jalapéño Coins',price:1},{name:'Spark Onion Strings',price:1.5},
       {name:'Ketchup',price:0},{name:'Mustard',price:0}
     ],
@@ -750,18 +750,18 @@ const itemCfg = {
     desc:'Quarter-pound all-beef dog, split-cut, char-grilled on a toasted bun. Build it your way.',
     ingredients:['House Sauce','Lettuce','Tomato','Sliced Onion','Relish'],
     extras:[
-      {name:'Chili',price:1.5},{name:'Cheese',price:1.5},
+      {name:'Chili',price:1.5},{name:'Cheese',price:1.5},{name:'Avocado',price:1},{name:'Bacon',price:2},
       {name:'Fire Jalapéño Coins',price:1},{name:'Spark Onion Strings',price:1.5},
       {name:'Ketchup',price:0},{name:'Mustard',price:0}
     ],
     hasCombo:true
   },
-  fries:    {type:'simple',id:'fries',   name:'Hot Diggity Fries',     price:4, desc:'Fresh cut, fired, tossed in special seasoning.'},
-  onion:    {type:'simple',id:'onion',   name:'Spark Onion Strings',   price:4, desc:'Fresh cut onions, seasoned and fried.'},
-  coins:    {type:'simple',id:'coins',   name:'Fire Jalapéño Coins', price:4, desc:'Fresh sliced jalapéños, seasoned and fried.'},
-  '3x3':   {type:'simple',id:'3x3',     name:'3x3',                   price:8, desc:'⅓ Fries · ⅓ Onion Strings · ⅓ Jalapéño Coins'},
-  chilicup: {type:'simple',id:'chilicup',name:'Hot Diggity Chili — Cup',  price:5, desc:'All beef, no beans. Cheddar + diced onions.'},
-  chilibo:  {type:'simple',id:'chilibo', name:'Hot Diggity Chili — Bowl', price:8, desc:'All beef, no beans. Cheddar + diced onions.'},
+  fries:    {type:'simple',id:'fries',   name:'Hot Diggity Fries',     price:4, desc:'Fresh cut, fired, tossed in special seasoning.',    extras:[{name:'Crumbled Bacon & Cheese',price:2}]},
+  onion:    {type:'simple',id:'onion',   name:'Spark Onion Strings',   price:4, desc:'Fresh cut onions, seasoned and fried.',              extras:[{name:'Crumbled Bacon & Cheese',price:2}]},
+  coins:    {type:'simple',id:'coins',   name:'Fire Jalapéño Coins',   price:4, desc:'Fresh sliced jalapéños, seasoned and fried.',        extras:[{name:'Crumbled Bacon & Cheese',price:2}]},
+  '3x3':   {type:'simple',id:'3x3',     name:'Rule of 3rds',           price:8, desc:'⅓ Fries · ⅓ Onion Strings · ⅓ Jalapéño Coins',    extras:[{name:'Crumbled Bacon & Cheese',price:2}]},
+  chilicup: {type:'simple',id:'chilicup',name:'Hot Diggity Chili — Cup',  price:5, desc:'All beef, no beans. Cheddar + diced onions.',    extras:[{name:'Crumbled Bacon',price:2}]},
+  chilibo:  {type:'simple',id:'chilibo', name:'Hot Diggity Chili — Bowl', price:8, desc:'All beef, no beans. Cheddar + diced onions.',    extras:[{name:'Crumbled Bacon',price:2}]},
   fountain: {
     type:'drink', id:'fountain', name:'Fountain Drink', basePrice:0,
     desc:"Coke · Diet Coke · Sprite · Mr. Pibb · Barq's Root Beer",
@@ -813,7 +813,8 @@ const itemCfg = {
     opts:[
       {group:'size',      label:'Size',      required:true,  items:[{val:'Small',price:4,label:'Small — $4'},{val:'Large',price:6,label:'Large — $6'}]},
       {group:'container', label:'Container', required:false, items:[{val:'Cup',price:0},{val:'Cone',price:0}]},
-      {group:'dip',       label:'Dip',       required:false, items:[{val:'No Dip',price:0,label:'No Dip'},{val:'Chocolate Dip',price:.5,label:'Chocolate +$0.50'},{val:'Strawberry Dip',price:.5,label:'Strawberry +$0.50'}]}
+      {group:'dip',       label:'Dip',       required:false, items:[{val:'No Dip',price:0,label:'No Dip'},{val:'Chocolate Dip',price:.5,label:'Chocolate +$0.50'},{val:'Strawberry Dip',price:.5,label:'Strawberry +$0.50'}]},
+      {group:'bacon',     label:'Add On',    required:false, items:[{val:'Crumbled Bacon',price:2,label:'Crumbled Bacon +$2'}]}
     ]
   },
   sundae: {
@@ -822,7 +823,8 @@ const itemCfg = {
     required:['base','sauce'],
     opts:[
       {group:'base', label:'Base',  required:true, items:[{val:'Brownie'},{val:'Cookie'}]},
-      {group:'sauce',label:'Sauce', required:true, items:[{val:'Chocolate'},{val:'Hot Fudge'},{val:'Strawberry'},{val:'Caramel'},{val:'Pineapple'}]}
+      {group:'sauce',label:'Sauce', required:true, items:[{val:'Chocolate'},{val:'Hot Fudge'},{val:'Strawberry'},{val:'Caramel'},{val:'Pineapple'}]},
+      {group:'bacon',label:'Add On',required:false,items:[{val:'Crumbled Bacon',price:2,label:'Crumbled Bacon +$2'}]}
     ]
   },
   bfsteak: {
@@ -832,7 +834,7 @@ const itemCfg = {
     ingredients:['Egg','House Sauce'],
     extras:[
       {name:'Lettuce',price:0},{name:'Tomato',price:0},{name:'Sliced Onion',price:0},
-      {name:'Chili',price:1.5},{name:'Cheese',price:1.5},
+      {name:'Chili',price:1.5},{name:'Cheese',price:1.5},{name:'Avocado',price:1},{name:'Bacon',price:2},
       {name:'Fire Jalapéño Coins',price:1},{name:'Spark Onion Strings',price:1.5},
       {name:'Ketchup',price:0},{name:'Mustard',price:0}
     ],
@@ -845,7 +847,7 @@ const itemCfg = {
     ingredients:['Egg','House Sauce'],
     extras:[
       {name:'Lettuce',price:0},{name:'Tomato',price:0},{name:'Sliced Onion',price:0},
-      {name:'Chili',price:1.5},{name:'Cheese',price:1.5},
+      {name:'Chili',price:1.5},{name:'Cheese',price:1.5},{name:'Avocado',price:1},
       {name:'Fire Jalapéño Coins',price:1},{name:'Spark Onion Strings',price:1.5},
       {name:'Ketchup',price:0},{name:'Mustard',price:0}
     ],
@@ -858,7 +860,7 @@ const itemCfg = {
     ingredients:['Egg','House Sauce'],
     extras:[
       {name:'Lettuce',price:0},{name:'Tomato',price:0},{name:'Sliced Onion',price:0},
-      {name:'Chili',price:1.5},
+      {name:'Chili',price:1.5},{name:'Avocado',price:1},{name:'Bacon',price:2},
       {name:'Fire Jalapéño Coins',price:1},{name:'Spark Onion Strings',price:1.5},
       {name:'Ketchup',price:0},{name:'Mustard',price:0}
     ],
@@ -870,7 +872,7 @@ const itemCfg = {
     desc:'All beef, no beans. Cheddar, diced onions, topped with a fried egg.',
     ingredients:['Egg','Cheddar','Diced Onions'],
     extras:[
-      {name:'Spark Onion Strings',price:1.5},
+      {name:'Avocado',price:1},{name:'Crumbled Bacon',price:2},{name:'Spark Onion Strings',price:1.5},
       {name:'Fire Jalapéño Coins',price:1},
       {name:'Ketchup',price:0},{name:'Mustard',price:0},{name:'Hot Sauce',price:0}
     ],
@@ -882,7 +884,7 @@ const itemCfg = {
     desc:'All beef, no beans. Cheddar, diced onions, topped with a fried egg.',
     ingredients:['Egg','Cheddar','Diced Onions'],
     extras:[
-      {name:'Spark Onion Strings',price:1.5},
+      {name:'Avocado',price:1},{name:'Crumbled Bacon',price:2},{name:'Spark Onion Strings',price:1.5},
       {name:'Fire Jalapéño Coins',price:1},
       {name:'Ketchup',price:0},{name:'Mustard',price:0},{name:'Hot Sauce',price:0}
     ],
@@ -958,6 +960,8 @@ function openItemModal(id) {
     sandwichState[id] = { removed: new Set(), extras: new Map(), opts: {}, ingState: new Map() };
     if (cfg.cheeseOpt) sandwichState[id].opts.cheese = { val: 'With Cheese', price: 0 };
     comboState[id] = {};
+  } else if (cfg.type === 'simple' && cfg.extras && cfg.extras.length) {
+    sandwichState[id] = { removed: new Set(), extras: new Map(), opts: {}, ingState: new Map() };
   } else if (cfg.type === 'drink') {
     drinkState[id] = {};
     if (cfg.defaults) {
@@ -1075,6 +1079,17 @@ function openItemModal(id) {
     }
   }
 
+  if (cfg.type === 'simple' && cfg.extras && cfg.extras.length) {
+    var extHtml2 = cfg.extras.map(function(ex) {
+      var lbl = ex.price > 0 ? ex.name + ' +$' + ex.price.toFixed(2).replace('.00','') : ex.name;
+      return '<button class="pill extra-pill" data-id="' + id + '" data-extra="' + ex.name + '" data-price="' + ex.price + '" onclick="toggleExtra(this)">' + lbl + '</button>';
+    }).join('');
+    var extSec2 = document.createElement('div');
+    extSec2.className = 'modal-section';
+    extSec2.innerHTML = '<div class="modal-section-label">Add On</div><div class="pill-group">' + extHtml2 + '</div>';
+    sections.appendChild(extSec2);
+  }
+
   if (cfg.type === 'drink') {
     cfg.opts.forEach(function(optGroup) {
       var sec = document.createElement('div');
@@ -1140,6 +1155,7 @@ function updateModalCTA() {
   var price = 0;
   if (cfg.type === 'simple') {
     price = cfg.price;
+    if (sandwichState[id]) sandwichState[id].extras.forEach(function(p) { price += p; });
   } else if (cfg.type === 'sandwich') {
     var s = sandwichState[id];
     var extra = 0;
@@ -1293,7 +1309,9 @@ function addFromModal() {
   if (!cfg) return;
 
   if (cfg.type === 'simple') {
-    cart.push({ name: cfg.name, custom: '', price: cfg.price });
+    var sExtra = 0; var sParts = [];
+    if (sandwichState[id]) sandwichState[id].extras.forEach(function(p, n) { sExtra += p; sParts.push('+' + n); });
+    cart.push({ name: cfg.name, custom: sParts.join(', '), price: cfg.price + sExtra });
     flashAdded(); updateCartBar(); closeItemModal();
     return;
   }
