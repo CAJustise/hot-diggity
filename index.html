@@ -322,113 +322,11 @@
 <div id="hero-banner"></div>
 
 <div class="tabs">
-  <button class="tab-btn" data-tab="breakfast" onclick="switchTab('breakfast')">Breakfast</button>
   <button class="tab-btn active" data-tab="food" onclick="switchTab('food')">Food</button>
   <button class="tab-btn" data-tab="drinks" onclick="switchTab('drinks')">Drinks</button>
   <button class="tab-btn" data-tab="sweets" onclick="switchTab('sweets')">Sweets</button>
+  <button class="tab-btn" data-tab="breakfast" onclick="switchTab('breakfast')">Breakfast</button>
 </div>
-
-<div class="tab-pane" id="tab-breakfast">
-
-<p class="section-head">Breakfast</p>
-<div class="items-grid">
-
-<div class="item-card" onclick="openItemModal('bfsteak')">
-  <div class="item-info">
-    <div class="item-name">Steak &amp; Egg</div>
-    <div class="item-desc">Flame-grilled flat iron steak with a fried egg on a toasted hoagie.</div>
-  </div>
-  <div class="item-thumb-wrap">
-    <img src="images/steak and egg.jpg" alt="" loading="lazy">
-    <div class="item-price-row"><span class="item-price">$17</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfsteak')" aria-label="Add">+</button></div>
-  </div>
-</div>
-
-<div class="item-card" onclick="openItemModal('bfchicken')">
-  <div class="item-info">
-    <div class="item-name">Chicken &amp; Egg</div>
-    <div class="item-desc">Flame-grilled chicken thigh with a fried egg on a brioche bun.</div>
-  </div>
-  <div class="item-thumb-wrap">
-    <img src="images/chicken and egg.jpg" alt="" loading="lazy">
-    <div class="item-price-row"><span class="item-price">$16</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfchicken')" aria-label="Add">+</button></div>
-  </div>
-</div>
-
-<div class="item-card" onclick="openItemModal('bfburger')">
-  <div class="item-info">
-    <div class="item-name">Burger &amp; Egg</div>
-    <div class="item-desc">Flame-grilled 80/20 chuck with a fried egg on a brioche bun.</div>
-  </div>
-  <div class="item-thumb-wrap">
-    <img src="images/burger and egg.jpg" alt="" loading="lazy">
-    <div class="item-price-row"><span class="item-price">$15</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfburger')" aria-label="Add">+</button></div>
-  </div>
-</div>
-
-<div class="item-card" onclick="openItemModal('bfchilichup')">
-  <div class="item-info">
-    <div class="item-name">Chili &amp; Egg &mdash; Cup</div>
-    <div class="item-desc">All beef, no beans. Cheddar, diced onions, topped with a fried egg.</div>
-  </div>
-  <div class="item-thumb-wrap">
-    <img src="images/chili and egg - cup.jpg" alt="" loading="lazy">
-    <div class="item-price-row"><span class="item-price">$5</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfchilichup')" aria-label="Add">+</button></div>
-  </div>
-</div>
-
-<div class="item-card" onclick="openItemModal('bfchlibo')">
-  <div class="item-info">
-    <div class="item-name">Chili &amp; Egg &mdash; Bowl</div>
-    <div class="item-desc">All beef, no beans. Cheddar, diced onions, topped with a fried egg.</div>
-  </div>
-  <div class="item-thumb-wrap">
-    <img src="images/chili and egg - bowl.jpg" alt="" loading="lazy">
-    <div class="item-price-row"><span class="item-price">$8</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfchlibo')" aria-label="Add">+</button></div>
-  </div>
-</div>
-
-</div>
-
-<p class="section-head">Breakfast Drinks</p>
-<div class="items-grid">
-
-<div class="item-card" onclick="openItemModal('oj')">
-  <div class="item-info">
-    <div class="item-name">Orange Juice</div>
-    <div class="item-desc">Fresh squeezed.</div>
-  </div>
-  <div class="item-thumb-wrap">
-    <img src="images/oj.jpg" alt="" loading="lazy">
-    <div class="item-price-row"><span class="item-price">$3</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('oj')" aria-label="Add">+</button></div>
-  </div>
-</div>
-
-<div class="item-card" onclick="openItemModal('hotcoffee')">
-  <div class="item-info">
-    <div class="item-name">Hot Coffee</div>
-    <div class="item-desc">House drip. Cream and sugar available.</div>
-  </div>
-  <div class="item-thumb-wrap">
-    <img src="images/coffee.jpg" alt="" loading="lazy">
-    <div class="item-price-row"><span class="item-price">$2</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('hotcoffee')" aria-label="Add">+</button></div>
-  </div>
-</div>
-
-<div class="item-card" onclick="openItemModal('icedcoffee')">
-  <div class="item-info">
-    <div class="item-name">Iced Coffee</div>
-    <div class="item-desc">Cold brew over ice.</div>
-  </div>
-  <div class="item-thumb-wrap">
-    <img src="images/iced coffee.jpg" alt="" loading="lazy">
-    <div class="item-price-row"><span class="item-price">$3</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('icedcoffee')" aria-label="Add">+</button></div>
-  </div>
-</div>
-
-</div>
-
-</div><!-- end tab-breakfast -->
 
 <div class="tab-pane active" id="tab-food">
 
@@ -637,6 +535,108 @@
 </div>
 
 </div><!-- end tab-sweets -->
+
+<div class="tab-pane" id="tab-breakfast">
+
+<p class="section-head">Breakfast</p>
+<div class="items-grid">
+
+<div class="item-card" onclick="openItemModal('bfsteak')">
+  <div class="item-info">
+    <div class="item-name">Steak &amp; Egg</div>
+    <div class="item-desc">Flame-grilled flat iron steak with a fried egg on a toasted hoagie.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/steak and egg.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$17</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfsteak')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+<div class="item-card" onclick="openItemModal('bfchicken')">
+  <div class="item-info">
+    <div class="item-name">Chicken &amp; Egg</div>
+    <div class="item-desc">Flame-grilled chicken thigh with a fried egg on a brioche bun.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/chicken and egg.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$16</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfchicken')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+<div class="item-card" onclick="openItemModal('bfburger')">
+  <div class="item-info">
+    <div class="item-name">Burger &amp; Egg</div>
+    <div class="item-desc">Flame-grilled 80/20 chuck with a fried egg on a brioche bun.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/burger and egg.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$15</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfburger')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+<div class="item-card" onclick="openItemModal('bfchilichup')">
+  <div class="item-info">
+    <div class="item-name">Chili &amp; Egg &mdash; Cup</div>
+    <div class="item-desc">All beef, no beans. Cheddar, diced onions, topped with a fried egg.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/chili and egg - cup.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$5</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfchilichup')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+<div class="item-card" onclick="openItemModal('bfchlibo')">
+  <div class="item-info">
+    <div class="item-name">Chili &amp; Egg &mdash; Bowl</div>
+    <div class="item-desc">All beef, no beans. Cheddar, diced onions, topped with a fried egg.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/chili and egg - bowl.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$8</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfchlibo')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+</div>
+
+<p class="section-head">Breakfast Drinks</p>
+<div class="items-grid">
+
+<div class="item-card" onclick="openItemModal('oj')">
+  <div class="item-info">
+    <div class="item-name">Orange Juice</div>
+    <div class="item-desc">Fresh squeezed.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/oj.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$3</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('oj')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+<div class="item-card" onclick="openItemModal('hotcoffee')">
+  <div class="item-info">
+    <div class="item-name">Hot Coffee</div>
+    <div class="item-desc">House drip. Cream and sugar available.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/coffee.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$2</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('hotcoffee')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+<div class="item-card" onclick="openItemModal('icedcoffee')">
+  <div class="item-info">
+    <div class="item-name">Iced Coffee</div>
+    <div class="item-desc">Cold brew over ice.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/iced coffee.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$3</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('icedcoffee')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+</div>
+
+</div><!-- end tab-breakfast -->
 
 </main>
 
