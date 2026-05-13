@@ -822,9 +822,10 @@ const itemCfg = {
   bfsteak: {
     type:'sandwich', id:'bfsteak',
     name:'Steak &amp; Egg', basePrice:17,
-    desc:'Flame-grilled flat iron steak, fried egg, house sauce, beefsteak tomato, white onion on a toasted hoagie.',
-    ingredients:['House Sauce','Egg','Lettuce','Tomato','Sliced Onion'],
+    desc:'Flame-grilled flat iron steak, fried egg, house sauce on a toasted hoagie. Build it your way.',
+    ingredients:['Egg','House Sauce'],
     extras:[
+      {name:'Lettuce',price:0},{name:'Tomato',price:0},{name:'Sliced Onion',price:0},
       {name:'Chili',price:1.5},{name:'Cheese',price:1.5},
       {name:'Fire Jalapéño Coins',price:1},{name:'Spark Onion Strings',price:1.5},
       {name:'Ketchup',price:0},{name:'Mustard',price:0}
@@ -834,9 +835,10 @@ const itemCfg = {
   bfchicken: {
     type:'sandwich', id:'bfchicken',
     name:'Chicken &amp; Egg', basePrice:16,
-    desc:'Flame-grilled chicken thigh, fried egg, house sauce, lettuce, tomato, sliced onion on a brioche bun.',
-    ingredients:['House Sauce','Egg','Lettuce','Tomato','Sliced Onion'],
+    desc:'Flame-grilled chicken thigh, fried egg, house sauce on a brioche bun. Build it your way.',
+    ingredients:['Egg','House Sauce'],
     extras:[
+      {name:'Lettuce',price:0},{name:'Tomato',price:0},{name:'Sliced Onion',price:0},
       {name:'Chili',price:1.5},{name:'Cheese',price:1.5},
       {name:'Fire Jalapéño Coins',price:1},{name:'Spark Onion Strings',price:1.5},
       {name:'Ketchup',price:0},{name:'Mustard',price:0}
@@ -846,9 +848,10 @@ const itemCfg = {
   bfburger: {
     type:'sandwich', id:'bfburger',
     name:'Burger &amp; Egg', basePrice:15,
-    desc:'Flame-grilled 80/20 chuck, fried egg, house sauce, lettuce, tomato, sliced onion on a brioche bun.',
-    ingredients:['House Sauce','Egg','Lettuce','Tomato','Sliced Onion'],
+    desc:'Flame-grilled 80/20 chuck, fried egg, cheese, house sauce on a brioche bun. Build it your way.',
+    ingredients:['Egg','House Sauce'],
     extras:[
+      {name:'Lettuce',price:0},{name:'Tomato',price:0},{name:'Sliced Onion',price:0},
       {name:'Chili',price:1.5},
       {name:'Fire Jalapéño Coins',price:1},{name:'Spark Onion Strings',price:1.5},
       {name:'Ketchup',price:0},{name:'Mustard',price:0}
