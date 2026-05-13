@@ -322,10 +322,113 @@
 <div id="hero-banner"></div>
 
 <div class="tabs">
+  <button class="tab-btn" data-tab="breakfast" onclick="switchTab('breakfast')">Breakfast</button>
   <button class="tab-btn active" data-tab="food" onclick="switchTab('food')">Food</button>
   <button class="tab-btn" data-tab="drinks" onclick="switchTab('drinks')">Drinks</button>
   <button class="tab-btn" data-tab="sweets" onclick="switchTab('sweets')">Sweets</button>
 </div>
+
+<div class="tab-pane" id="tab-breakfast">
+
+<p class="section-head">Breakfast</p>
+<div class="items-grid">
+
+<div class="item-card" onclick="openItemModal('bfsteak')">
+  <div class="item-info">
+    <div class="item-name">Steak &amp; Egg</div>
+    <div class="item-desc">Flame-grilled flat iron steak with a fried egg on a toasted hoagie.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/steak and egg.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$17</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfsteak')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+<div class="item-card" onclick="openItemModal('bfchicken')">
+  <div class="item-info">
+    <div class="item-name">Chicken &amp; Egg</div>
+    <div class="item-desc">Flame-grilled chicken thigh with a fried egg on a brioche bun.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/chicken and egg.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$16</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfchicken')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+<div class="item-card" onclick="openItemModal('bfburger')">
+  <div class="item-info">
+    <div class="item-name">Burger &amp; Egg</div>
+    <div class="item-desc">Flame-grilled 80/20 chuck with a fried egg on a brioche bun.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/burger and egg.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$15</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfburger')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+<div class="item-card" onclick="openItemModal('bfchilichup')">
+  <div class="item-info">
+    <div class="item-name">Chili &amp; Egg &mdash; Cup</div>
+    <div class="item-desc">All beef, no beans. Cheddar, diced onions, topped with a fried egg.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/chili and egg - cup.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$5</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfchilichup')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+<div class="item-card" onclick="openItemModal('bfchlibo')">
+  <div class="item-info">
+    <div class="item-name">Chili &amp; Egg &mdash; Bowl</div>
+    <div class="item-desc">All beef, no beans. Cheddar, diced onions, topped with a fried egg.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/chili and egg - bowl.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$8</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('bfchlibo')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+</div>
+
+<p class="section-head">Breakfast Drinks</p>
+<div class="items-grid">
+
+<div class="item-card" onclick="openItemModal('oj')">
+  <div class="item-info">
+    <div class="item-name">Orange Juice</div>
+    <div class="item-desc">Fresh squeezed.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/oj.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$3</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('oj')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+<div class="item-card" onclick="openItemModal('hotcoffee')">
+  <div class="item-info">
+    <div class="item-name">Hot Coffee</div>
+    <div class="item-desc">House drip. Cream and sugar available.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/coffee.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$2</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('hotcoffee')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+<div class="item-card" onclick="openItemModal('icedcoffee')">
+  <div class="item-info">
+    <div class="item-name">Iced Coffee</div>
+    <div class="item-desc">Cold brew over ice.</div>
+  </div>
+  <div class="item-thumb-wrap">
+    <img src="images/iced coffee.jpg" alt="" loading="lazy">
+    <div class="item-price-row"><span class="item-price">$3</span><button class="item-plus" onclick="event.stopPropagation();openItemModal('icedcoffee')" aria-label="Add">+</button></div>
+  </div>
+</div>
+
+</div>
+
+</div><!-- end tab-breakfast -->
 
 <div class="tab-pane active" id="tab-food">
 
@@ -710,7 +813,15 @@ const itemCfg = {
       {group:'base', label:'Base',  required:true, items:[{val:'Brownie'},{val:'Cookie'}]},
       {group:'sauce',label:'Sauce', required:true, items:[{val:'Chocolate'},{val:'Hot Fudge'},{val:'Strawberry'},{val:'Caramel'},{val:'Pineapple'}]}
     ]
-  }
+  },
+  bfsteak:    {type:'simple',id:'bfsteak',    name:'Steak & Egg',          price:17, desc:'Flame-grilled flat iron steak with a fried egg on a toasted hoagie.'},
+  bfchicken:  {type:'simple',id:'bfchicken',  name:'Chicken & Egg',        price:16, desc:'Flame-grilled chicken thigh with a fried egg on a brioche bun.'},
+  bfburger:   {type:'simple',id:'bfburger',   name:'Burger & Egg',         price:15, desc:'Flame-grilled 80/20 chuck with a fried egg on a brioche bun.'},
+  bfchilichup:{type:'simple',id:'bfchilichup',name:'Chili & Egg — Cup',  price:5,  desc:'All beef, no beans. Cheddar, diced onions, topped with a fried egg.'},
+  bfchlibo:   {type:'simple',id:'bfchlibo',   name:'Chili & Egg — Bowl', price:8,  desc:'All beef, no beans. Cheddar, diced onions, topped with a fried egg.'},
+  oj:         {type:'simple',id:'oj',         name:'Orange Juice',         price:3,  desc:'Fresh squeezed.'},
+  hotcoffee:  {type:'simple',id:'hotcoffee',  name:'Hot Coffee',           price:2,  desc:'House drip. Cream and sugar available.'},
+  icedcoffee: {type:'simple',id:'icedcoffee', name:'Iced Coffee',          price:3,  desc:'Cold brew over ice.'}
 };
 
 // ── State ──────────────────────────────────────────────────────
@@ -760,7 +871,7 @@ function openItemModal(id) {
   }
 
   // Photo hero
-  var photoMap = {steak:'images/steak.jpg',chicken:'images/chicken.jpg',burger:'images/burger.jpg',dog:'images/hotdog.jpg',fries:'images/fries.jpg',onion:'images/onion-strings.jpg',coins:'images/jalapeno-coins.jpg',icee:'images/icee.jpg',chilicup:'images/chili-cup.jpg',chilibo:'images/chili-bowl.jpg',fountain:'images/coke.jpg',lemon:'images/lemonade.jpg',tea:'images/tea.jpg',softserve:'images/softserve.jpg',sundae:'images/sundae.jpg','3x3':'images/3x3.jpg'};
+  var photoMap = {steak:'images/steak.jpg',chicken:'images/chicken.jpg',burger:'images/burger.jpg',dog:'images/hotdog.jpg',fries:'images/fries.jpg',onion:'images/onion-strings.jpg',coins:'images/jalapeno-coins.jpg',icee:'images/icee.jpg',chilicup:'images/chili-cup.jpg',chilibo:'images/chili-bowl.jpg',fountain:'images/coke.jpg',lemon:'images/lemonade.jpg',tea:'images/tea.jpg',softserve:'images/softserve.jpg',sundae:'images/sundae.jpg','3x3':'images/3x3.jpg',bfsteak:'images/steak and egg.jpg',bfchicken:'images/chicken and egg.jpg',bfburger:'images/burger and egg.jpg',bfchilichup:'images/chili and egg - cup.jpg',bfchlibo:'images/chili and egg - bowl.jpg',oj:'images/oj.jpg',hotcoffee:'images/coffee.jpg',icedcoffee:'images/iced coffee.jpg'};
   var photoEl = document.getElementById('item-modal-photo');
   var existingImg = photoEl.querySelector('img');
   if (existingImg) existingImg.remove();
