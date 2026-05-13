@@ -819,9 +819,35 @@ const itemCfg = {
   bfburger:   {type:'simple',id:'bfburger',   name:'Burger & Egg',         price:15, desc:'Flame-grilled 80/20 chuck with a fried egg on a brioche bun.'},
   bfchilichup:{type:'simple',id:'bfchilichup',name:'Chili & Egg — Cup',  price:5,  desc:'All beef, no beans. Cheddar, diced onions, topped with a fried egg.'},
   bfchlibo:   {type:'simple',id:'bfchlibo',   name:'Chili & Egg — Bowl', price:8,  desc:'All beef, no beans. Cheddar, diced onions, topped with a fried egg.'},
-  oj:         {type:'simple',id:'oj',         name:'Orange Juice',         price:3,  desc:'Fresh squeezed.'},
-  hotcoffee:  {type:'simple',id:'hotcoffee',  name:'Hot Coffee',           price:2,  desc:'House drip. Cream and sugar available.'},
-  icedcoffee: {type:'simple',id:'icedcoffee', name:'Iced Coffee',          price:3,  desc:'Cold brew over ice.'}
+  oj: {
+    type:'drink', id:'oj', name:'Orange Juice', basePrice:3,
+    desc:'Fresh squeezed.',
+    required:[],
+    defaults:{cream:{val:'No Cream',price:0}},
+    opts:[
+      {group:'cream', label:'Cream', required:false, items:[{val:'No Cream',price:0},{val:'Add Cream',price:0}]}
+    ]
+  },
+  hotcoffee: {
+    type:'drink', id:'hotcoffee', name:'Hot Coffee', basePrice:2,
+    desc:'House drip.',
+    required:[],
+    defaults:{cream:{val:'No Cream',price:0},sweetener:{val:'None',price:0}},
+    opts:[
+      {group:'cream',     label:'Cream',     required:false, items:[{val:'No Cream',price:0},{val:'Add Cream',price:0}]},
+      {group:'sweetener', label:'Sweetener', required:false, items:[{val:'None',price:0},{val:'Sugar Packets',price:0},{val:'Equal',price:0},{val:'Liquid Sweetener',price:0}]}
+    ]
+  },
+  icedcoffee: {
+    type:'drink', id:'icedcoffee', name:'Iced Coffee', basePrice:3,
+    desc:'Cold brew over ice.',
+    required:[],
+    defaults:{cream:{val:'No Cream',price:0},sweetener:{val:'None',price:0}},
+    opts:[
+      {group:'cream',     label:'Cream',     required:false, items:[{val:'No Cream',price:0},{val:'Add Cream',price:0}]},
+      {group:'sweetener', label:'Sweetener', required:false, items:[{val:'None',price:0},{val:'Sugar Packets',price:0},{val:'Equal',price:0},{val:'Liquid Sweetener',price:0}]}
+    ]
+  }
 };
 
 // ── State ──────────────────────────────────────────────────────
